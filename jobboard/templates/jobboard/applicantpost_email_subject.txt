@@ -1,0 +1,1 @@
+New Job Board Post - Job Post from {{ applicant.first_name }} {{ applicant.last_name }}

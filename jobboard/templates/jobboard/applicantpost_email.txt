@@ -1,0 +1,11 @@
+Hello,
+
+A new job applicant post was submitted to the Job Board:
+
+ - Applicant's name: {{ applicant.first_name }} {{ applicant.last_name }}
+ - E-mail: {{ applicant.email }}
+ - Phone: {{ applicant.phone_number }}
+ - Position: {{ applicant.position.name }}
+ - Availability: {{ applicant.hours_string }}
+ - Resume:
+{{ applicant.resume|wordwrap:"70" }}

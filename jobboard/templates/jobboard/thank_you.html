@@ -1,0 +1,18 @@
+{% extends "jobboard/base.html" %}
+
+{% block title %}Thank You for Posting &#8211; - {{ block.super }}{% endblock %}
+
+{% block appcontent %}
+
+<h2>Thanks!</h2>
+
+<p>
+  Thank you for your submission! We'll process your post as soon as
+  possible.
+</p>
+
+<p>
+  <a href="{% url jobboard_index %}">Back to the job board</a>
+</p>
+
+{% endblock %}

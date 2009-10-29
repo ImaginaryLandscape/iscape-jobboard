@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: JobBoard
+Version: 1.1
+Summary: A simple job board for Django
+Home-page: UNKNOWN
+Author: Chris Webber
+Author-email: cwebber@imagescape.com
+License: GPL v3
+Description: A simple job board for Django.
+        
+Keywords: django job board
+Platform: UNKNOWN
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Development Status :: 4 - Beta

@@ -1,0 +1,50 @@
+{% extends "jobboard/base.html" %}
+
+{% load humanize %}
+
+{% block title %}Job Applicants - {{ block.super }}{% endblock %}
+
+{% block appcontent %}
+
+<h2>Job Applicants</h2>
+
+{% if applicant_list %}
+{% for applicant in applicant_list %}
+{% include "jobboard/applicant_display.html" %}
+{% if not forloop.last %}
+<hr />
+{% endif %}
+{% endfor %}
+
+{% else %}
+<p>There have been no applications submitted recently.</p>
+{% endif %}
+
+{% if has_previous or has_next %}
+<ul class="horizontal">
+  <li>
+    {% if has_previous %}
+    <a href="{% url jobboard_applicant_list %}?{{ query_string }}&page={{ previous }}">
+      Previous</a>
+    {% else %}
+    Previous
+    {% endif %}
+  </li>
+  <li>
+    <strong>{{ hits|intcomma }} Result{{ hits|pluralize }}:</strong>
+  </li>
+  <li>
+    Page {{ page|intcomma }} of {{ pages|intcomma }}
+  </li>
+  <li class="last">
+    {% if has_next %}
+    <a href="{% url jobboard_applicant_list %}?{{ query_string }}&page={{ next }}">
+      Next</a>
+    {% else %}
+    Next
+    {% endif %}
+  </li>
+</ul><br class="clear" />
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+Hello,
+
+A new job post was submitted to the job board:
+
+-- Poster's name: {{ job.posters_name }}
+-- E-mail: {{ job.email }}
+-- Position: {{ job.position.name }}
+-- Work Hours: {{ job.work_hours }}
+-- Description:
+{{ job.description|wordwrap:"70" }}
+-- How to apply:
+{{ job.contact_information|wordwrap:"70" }}

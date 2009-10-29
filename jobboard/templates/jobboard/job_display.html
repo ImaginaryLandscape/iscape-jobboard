@@ -1,0 +1,27 @@
+<table class="post">
+  <tbody>
+    <tr>
+      <th>Position</th>
+      <td>{{ job.position.name }}</td>
+    </tr>
+    {% if job.description %}
+    <tr>
+      <th>Description</th>
+      <td>{{ job.description|urlize|linebreaks }}</td>
+    </tr>
+    {% endif %}
+    {% if job.work_hours %}
+    <tr>
+      <th>Work hours</th>
+      <td>{{ job.work_hours }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+      <th>Posted By</th>
+      <td>{{ job.posters_name }}</td>
+    </tr>
+    <tr>
+      <th>How to Apply</th>
+      <td>{{ job.contact_information|urlize|linebreaks }}</td>
+    </tr>
+</table>

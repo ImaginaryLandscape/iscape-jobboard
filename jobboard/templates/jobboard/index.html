@@ -1,0 +1,50 @@
+{% extends "jobboard/base.html" %}
+
+{% block title %}Welcome - {{ block.super }}{% endblock %}
+
+{% block appcontent %}
+
+<h2>Welcome to the Job Board!</h2>
+
+<h3>Job Postings</h3>
+
+{% if jobs %}
+{% for job in jobs %}
+{% include "jobboard/job_display.html" %}
+{% endfor %}
+
+{% else %}
+<p>There have been no jobs submitted recently.</p>
+{% endif %}
+
+<ul class="horizontal">
+  <li>
+    <a href="{% url jobboard_job_list %}">View all jobs</a>
+  </li>
+  <li class="last">
+    <a href="{% url jobboard_submit_job %}">Post a job</a>
+  </li>
+</ul><br class="clear" />
+
+
+<h3>Job Applicants</h3>
+
+{% if applicants %}
+{% for applicant in applicants %}
+{% include "jobboard/applicant_display.html" %}
+{% endfor %}
+
+{% else %}
+<p>There have been no applications submitted recently.</p>
+{% endif %}
+
+<ul class="horizontal">
+  <li>
+    <a href="{% url jobboard_applicant_list %}">View all applicants</a>
+  </li>
+  <li class="last">
+    <a href="{% url jobboard_submit_applicant %}">Post your resume</a>
+  </li>
+</ul><br class="clear" />
+
+{% endblock %}

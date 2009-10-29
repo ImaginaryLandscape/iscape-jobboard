@@ -1,0 +1,84 @@
+{% extends "jobboard/base.html" %}
+
+{% block title %}Post a Job - {{ block.super }}{% endblock title %}
+
+{% block appcontent %}
+<h2>Post a Job</h2>
+
+<form class="post position"
+      action="{% url jobboard_submit_job %}"
+      method="post">
+  <table>
+    <tr>
+      <th><label for="id_posters_name">Poster's Name</label></th>
+      <td>
+        {% if job_form.posters_name.errors %}
+        <ul class="error">
+          {{ job_form.posters_name.errors }}
+        </ul>
+        {% endif %}
+        {{ job_form.posters_name }}
+      </td>
+    </tr>
+    <tr>
+      <th>{{ job_form.work_hours.label_tag }}</th>
+      <td>
+        {% if job_form.work_hours.errors %}
+        <ul class="error">
+          {{ job_form.work_hours.errors }}
+        </ul>
+        {% endif %}
+        {{ job_form.work_hours }}
+      </td>
+    </tr>
+    <tr>
+      <th>{{ job_form.description.label_tag }}</th>
+      <td>
+        {% if job_form.description.errors %}
+        <ul class="error">
+          {{ job_form.description.errors }}
+        </ul>
+        {% endif %}
+        {{ job_form.description }}
+      </td>
+    </tr>
+    <tr>
+      <th>{{ job_form.position.label_tag }}</th>
+      <td>
+        {% if job_form.position.errors %}
+        <ul class="error">
+          {{ job_form.position.errors }}
+        </ul>
+        {% endif %}
+        {{ job_form.position }}
+      </td>
+    </tr>
+    <tr>
+      <th><label for="id_email">E-mail</label></th>
+      <td>
+        {% if job_form.email.errors %}
+        <ul class="error">
+          {{ job_form.email.errors }}
+        </ul>
+        {% endif %}
+        {{ job_form.email }}
+      </td>
+    </tr>
+    <tr>
+      <th><label for="id_contact_information">How to Apply:</label></th>
+      <td>
+        {% if job_form.contact_information.errors %}
+        <ul class="error">
+          {{ job_form.contact_information.errors }}
+        </ul>
+        {% endif %}
+        {{ job_form.contact_information }}
+      </td>
+    </tr>
+  </table>
+
+  <button class="submit" type="submit">Submit</button>
+  <br class="clear" />
+</form>
+
+{% endblock %}

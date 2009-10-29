@@ -1,0 +1,32 @@
+<table class="applicant_post">
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <td>{{ applicant.first_name }} {{ applicant.last_name }}</td>
+    </tr>
+    <tr>
+      <th>Position Sought</th>
+      <td>{{ applicant.position.name }}</td>
+    </tr>
+    <tr>
+      <th>Availability</th>
+      <td>{{ applicant.hours_string }}</td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td>{{ applicant.phone_number }}</td>
+    </tr>
+    {% if applicant.email %}
+    <tr>
+      <th>Email</th>
+      <td>
+        <a href="mailto:{{ applicant.email }}">{{ applicant.email }}</a>
+      </td>
+    </tr>
+    {% endif %}
+    <tr>
+      <th>Resume</th>
+      <td>{{ applicant.resume|urlize|linebreaks }}</td>
+    </tr>
+  </tbody>
+</table>

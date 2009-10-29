@@ -1,0 +1,114 @@
+{% extends "jobboard/base.html" %}
+
+{% block title %}Submit an application - {{ block.super }}{% endblock %}
+
+{% block appcontent %}
+
+<h2>Submit an application</h2>
+
+<form class="post applicant"
+      action="{% url jobboard_submit_applicant %}"
+      method="post">
+  <table>
+    <tr>
+      <th>{{ applicant_form.first_name.label_tag }}</th>
+      <td>
+        {% if applicant_form.first_name.errors %}
+        <ul class="error">
+          {{ applicant_form.first_name.errors }}
+        </ul>
+        {% endif %}
+        {{ applicant_form.first_name }}
+      </td>
+    </tr>
+    <tr>
+      <th>{{ applicant_form.last_name.label_tag }}</th>
+      <td>
+        {% if applicant_form.last_name.errors %}
+        <ul class="error">
+          {{ applicant_form.last_name.errors }}
+        </ul>
+        {% endif %}
+        {{ applicant_form.last_name }}
+      </td>
+    </tr>
+    <tr>
+      <th><label for="id_phone_number">Phone:</label></th>
+      <td>
+        {% if applicant_form.phone_number.errors %}
+        <ul class="error">
+          {{ applicant_form.phone_number.errors }}
+        </ul>
+        {% endif %}
+        {{ applicant_form.phone_number }}
+      </td>
+    </tr>
+    <tr>
+      <th>{{ applicant_form.position.label_tag }}</th>
+      <td>
+        {% if applicant_form.position.errors %}
+        <ul class="error">
+          {{ applicant_form.position.errors }}
+        </ul>
+        {% endif %}
+        {{ applicant_form.position }}
+      </td>
+    </tr>
+    <tr>
+      <th><label for="id_email">E-Mail:</label></th>
+      <td>
+        {% if applicant_form.email.errors %}
+        <ul class="error">
+          {{ applicant_form.email.errors }}
+        </ul>
+        {% endif %}
+        {{ applicant_form.email }}
+      </td>
+    </tr>
+    <tr>
+      <th>Availability:</th>
+      <td>
+        {% if applicant_form.full_time.errors or applicant_form.part_time.errors %}
+        <ul class="error">
+          {% if applicant_form.full_time.errors %}
+          {{ applicant_form.full_time.errors }}
+          {% endif %}
+          {% if applicant_form.part_time.errors %}
+          {{ applicant_form.part_time.errors }}
+          {% endif %}
+        </ul>
+        {% endif %}
+        {{ applicant_form.full_time }}
+        <label for="id_full_time">
+          Full-time
+        </label>
+        &#160;
+        {{ applicant_form.part_time }}
+        <label for="id_part_time">Part-time</label>
+      </td>
+    </tr>
+    <tr>
+      <th>{{ applicant_form.resume.label_tag }}</th>
+      <td>
+        {% if applicant_form.resume.errors %}
+        <ul class="error">
+          {{ applicant_form.resume.errors }}
+        </ul>
+        {% endif %}
+        {{ applicant_form.resume }}
+
+        <p class="instruction">
+          <strong>Note:</strong> Copy and paste your resume from a Microsoft
+          Word document (or other format). Be aware that formatting within the
+          document will not come through when it is part of this form. Please
+          review your pasted resume to ensure readability.
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <button class="submit" type="submit">Submit</button>
+  <br class="clear" />
+</form>
+
+{% endblock %}
