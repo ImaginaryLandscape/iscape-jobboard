@@ -10,21 +10,34 @@ publish about available jobs and for those seeking jobs (called
 Installation
 ============
 
-Then install the Job Board:
+We don't have an official release at this time, but you can install by using
+the following steps:
 
-  easy_install -UaZ http://imagescape.com/oss/files/JobBoard-latest.tar.gz
+    git clone git://github.com/imagescape/iscape-jobboard.git
+    cd iscape-jobboard
+    python setup.py build
+    python setup.py install
 
-(These files are subject to change.  We haven't made a public release
-at the time of writing.  If they don't appear to be there, contact
-cwebber@imagescape.com)
 
+Captcha (Optional)
+=============
+
+We've added basic support for CAPTCHA on the job and resume posting forms. 
+We're currently leveraging ``django-simple-captcha`` for our CAPTCHA needs. In
+order to use it you'll need to install the following applications:
+
+    django-simple-captcha
+    PIL (Python Imaging library)
+
+Then just place 'captcha' in your installed applications, and sync the 
+database. django-simple-captcha is very customizable, so we recommend viewing
+http://code.google.com/p/django-simple-captcha/wiki/CaptchaConfiguration for
+all your configuration options.
 
 Configuration
 =============
 
-Configure the job board.  More detailed instructions will come soon,
-but for now this will work.  Put the following in your settings
-module::
+Put the following in your settings module:
 
     JOBBOARD_JOBS_ON_INDEX = 5
     JOBBOARD_JOBS_PER_PAGE = 15
@@ -61,7 +74,8 @@ Setting                           Description
 
 You'll also have to add to your INSTALLED_APPS setting the following::
 
-  'jobboard', 'django.contrib.humanize'
+  'jobboard', 
+  'django.contrib.humanize',
 
 In your root ``urls.py``, add the following to your urlpatterns::
 
