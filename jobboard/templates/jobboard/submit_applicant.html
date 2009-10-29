@@ -105,6 +105,18 @@
         </p>
       </td>
     </tr>
+    {% if captcha %}
+    <tr>
+      <th>{{ applicant_form.captcha.label_tag }}</th>
+      <td>
+        {% if applicant_form.captcha.errors %}
+        <ul class="error">
+          {{ applicant_form.captcha.errors }}
+        </ul>
+        {% endif %}
+      <td>
+    </tr>
+    {% endif %}
   </table>
 
   <button class="submit" type="submit">Submit</button>

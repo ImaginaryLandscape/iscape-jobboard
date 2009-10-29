@@ -211,13 +211,19 @@ def submit_applicant(request):
     Upon successful submission, the user will be redirected to a
     "thank you" page.
     """
+    if settings.CAPTCHA:
+        captcha = True
+    else:
+        captcha = False
     if request.method == 'POST':
         applicant_form = ApplicantPost(request.POST)
 
         if not applicant_form.is_valid():
             return render_to_response(
                 'jobboard/submit_applicant.html',
-                {'applicant_form': applicant_form},
+                {'applicant_form': applicant_form,
+                 'captcha': captcha,
+                },
                 context_instance=RequestContext(request))
 
         applicant_data = applicant_form.cleaned_data
@@ -260,7 +266,9 @@ def submit_applicant(request):
         applicant_form = ApplicantPost()
         return render_to_response(
             'jobboard/submit_applicant.html',
-            {'applicant_form': applicant_form},
+            {'applicant_form': applicant_form,
+             'captcha': captcha,
+            },
             context_instance=RequestContext(request))
 
 
