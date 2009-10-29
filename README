@@ -1,0 +1,124 @@
+=========
+Job Board
+=========
+
+This is a simple Job Board for Django.  It allows both for people to
+publish about available jobs and for those seeking jobs (called
+"applicants" in the application) to publish their resumes.
+
+
+Installation
+============
+
+Then install the Job Board:
+
+  easy_install -UaZ http://imagescape.com/oss/files/JobBoard-latest.tar.gz
+
+(These files are subject to change.  We haven't made a public release
+at the time of writing.  If they don't appear to be there, contact
+cwebber@imagescape.com)
+
+
+Configuration
+=============
+
+Configure the job board.  More detailed instructions will come soon,
+but for now this will work.  Put the following in your settings
+module::
+
+    JOBBOARD_JOBS_ON_INDEX = 5
+    JOBBOARD_JOBS_PER_PAGE = 15
+    JOBBOARD_APPLICANTS_ON_INDEX = 5
+    JOBBOARD_APPLICANTS_PER_PAGE = 15
+    JOBBOARD_POSTS_EXPIRE_DAYS = 30
+    JOBBOARD_FROM_EMAIL = SERVER_EMAIL
+
+
+A brief description of each of these settings:
+
+================================  =========================================
+Setting                           Description
+================================  =========================================
+``JOBBOARD_JOBS_ON_INDEX``        How many job postings should appear on
+                                  the index page
+
+``JOBBOARD_JOBS_PER_PAGE``        How many job postings should appear per
+                                  page on the active jobs listing
+
+``JOBBOARD_APPLICANTS_ON_INDEX``  How many applicant postings should appear
+                                  on the index page
+
+``JOBBOARD_APPLICANTS_PER_PAGE``  How many applicant postings should appear
+                                  per page on the active jobs listing
+
+``JOBBOARD_POSTS_EXPIRE_DAYS``    In how many days from submission a post
+                                  will "expire" and no longer appear on the
+                                  listing or index
+
+``JOBBOARD_FROM_EMAIL``           What address notification emails will
+                                  appear to come from
+================================  =========================================
+
+You'll also have to add to your INSTALLED_APPS setting the following::
+
+  'jobboard', 'django.contrib.humanize'
+
+In your root ``urls.py``, add the following to your urlpatterns::
+
+    (r'^jobboard/', include('jobboard.urls')),
+
+Sync your database with ``syncdb`` from the command line.
+
+Customizing templates
+=====================
+
+All of job board's templates are customizable and overridable, and all
+exist under the the template path of 'jobboard/'.  There are a few
+templates you will likely want to override to meet the needs of your
+particular site.  (Note that these are *not* the only templates, only
+the ones that most users will want to override.)
+
+
+jobboard/base.html
+------------------
+
+All templates in this application inherit from this file.  By default,
+this file also inherits from the file ``base_site.html``.  Note that
+an example file of base_site.html is provided by this application, but
+you should either override that in a site level templates directory or
+change base.html to wrap whatever base site template you use.
+
+
+jobboard/index.html
+-------------------
+
+This is the first page visitors to this application should see.  You
+should probably override this template and fill in whatever
+introduction message you would like your visitors to see (currently it
+provides a block of lorem ipsum text where your message should go).
+
+
+Usage
+=====
+
+The first thing you will definitely want to do is to add entries to the
+Position table.  Each entry here will be an option describing a type
+of position users can both apply to and employers can offer jobs for.
+For example, if you added three entries of "Python Programmer",
+"System Administrator" and "Other", users will have the option to make
+posts relevant to any of those three positions.
+
+The second thing you may want to do after installing this application
+are to go to the Django admin and add one or more entries to the
+NotifyEmail table.  While this isn't necessary, it is recommended, as
+any email address in this list will get sent a message any time a new
+post is submitted to the site.
+
+Other than that, interfacing with the job board is fairly simple.  New
+job posts are submitted and assigned an expiration date relevant to
+jobboard's "JOBBOARD_POSTS_EXPIRE_DAYS" configuration option.  If
+you're in the NotifyEmail table, you'll be sent an email notifying you
+of any and all new submissions, and then you'll have the option to go
+in and approve or delete any such posting.  Any posts that are
+approved will appear on the index of the job board and in either the
+job or applicant listings.
