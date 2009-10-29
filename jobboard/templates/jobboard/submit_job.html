@@ -75,6 +75,19 @@
         {{ job_form.contact_information }}
       </td>
     </tr>
+    {% if captcha %}
+    <tr>
+      <th><label for="id_captcha_0">Captcha:</label></th>
+      <td>
+        {% if job_form.captcha.errors %}
+        <ul class="error">
+          {{ job_form.captcha.errors }}
+        </ul>
+        {% endif %}
+        {{ job_form.captcha }}
+      </td>
+    </tr>
+    {% endif %}
   </table>
 
   <button class="submit" type="submit">Submit</button>

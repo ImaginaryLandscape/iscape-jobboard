@@ -240,8 +240,10 @@ class ApplicantPost(models.Model):
           any.
         """
         hours = []
-        if self.full_time: hours.append('full time')
-        if self.part_time: hours.append('part time')
+        if self.full_time:
+            hours.append('full time')
+        if self.part_time:
+            hours.append('part time')
         if hours:
             return ', '.join(hours)
         else:

@@ -28,13 +28,12 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ################################################################################
-try:
-    from django import forms
-except ImportError:
-    # for pre 1.0 compatibility
-    from django import newforms as forms
-
+from django import forms
+from django.conf import settings
 from jobboard import models
+
+if settings.CAPTCHA:
+    from captcha.fields import CaptchaField
 
 
 class JobPost(forms.Form):
@@ -47,6 +46,9 @@ class JobPost(forms.Form):
     position = forms.ModelChoiceField(models.Position.objects.all())
     email = forms.EmailField(required=False)
     contact_information = forms.CharField(widget=forms.Textarea)
+    
+    if settings.CAPTCHA:
+        captcha = CaptchaField() 
 
     def clean_posters_name(self):
         """
@@ -69,6 +71,8 @@ class ApplicantPost(forms.Form):
     full_time = forms.BooleanField(required=False)
     part_time = forms.BooleanField(required=False)
     other_time = forms.BooleanField(required=False)
+    if settings.CAPTCHA:
+        captcha = CaptchaField()
 
     def clean_first_name(self):
         """

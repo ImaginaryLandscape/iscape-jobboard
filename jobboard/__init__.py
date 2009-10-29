@@ -18,3 +18,9 @@ if not hasattr(settings, 'JOBBOARD_APPLICANTS_ON_INDEX'):
 
 if not hasattr(settings, 'JOBBOARD_JOBS_ON_INDEX'):
     settings.JOBBOARD_JOBS_ON_INDEX = 5
+
+if not hasattr(settings, 'CAPTCHA'):
+    if "captcha" in settings.INSTALLED_APPS:
+        settings.CAPTCHA = True
+    else:
+        settings.CAPTCHA = False
