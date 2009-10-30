@@ -1,3 +1,4 @@
 *.pyc
 JobBoard.egg-info
 dist
+build
