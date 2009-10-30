@@ -1,1 +1,2 @@
 recursive-include jobboard/templates *
+recursive-include jobboard/fixtures *
