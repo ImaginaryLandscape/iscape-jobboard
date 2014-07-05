@@ -13,7 +13,7 @@ Installation
 We don't have an official release at this time, but you can install by using
 the following steps:
 
-    git clone git://github.com/imagescape/iscape-jobboard.git
+    git clone https://github.com/ImaginaryLandscape/iscape-jobboard.git
     cd iscape-jobboard
     python setup.py build
     python setup.py install
